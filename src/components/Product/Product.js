@@ -13,6 +13,9 @@ const Product = props => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
   }
 
+  const setClickedColorAsCurrent = clickedColor => setCurrentColor(clickedColor);
+  const setClickedSizeAsCurrent = clickedSize => setCurrentSize(clickedSize);
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -30,7 +33,13 @@ const Product = props => {
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
-              {props.sizes.map(size => <li><button type="button" className={size === currentSize && styles.active}>{size.name}</button></li>)}
+              {props.sizes.map(size =>
+                <li>
+                  <button type="button" className={size === currentSize && styles.active} onClick={() => setCurrentSize(size)}>
+                    {size.name}
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
           <div className={styles.colors}>
@@ -38,7 +47,7 @@ const Product = props => {
             <ul className={styles.choices}>
               {props.colors.map(color =>
                 <li key={color}>
-                  <button type="button" className={clsx(prepareColorClassName(color), color === currentColor && styles.active)} />
+                  <button type="button" className={clsx(prepareColorClassName(color), color === currentColor && styles.active)} onClick={() => setCurrentColor(color)}/>
                 </li>
               )}
             </ul>
