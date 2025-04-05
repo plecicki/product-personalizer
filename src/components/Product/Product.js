@@ -13,8 +13,7 @@ const Product = props => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
   }
 
-  const setClickedColorAsCurrent = clickedColor => setCurrentColor(clickedColor);
-  const setClickedSizeAsCurrent = clickedSize => setCurrentSize(clickedSize);
+  const getPrice = (basePrice, additionalPrice) => basePrice+additionalPrice;
 
   return (
     <article className={styles.product}>
@@ -27,7 +26,7 @@ const Product = props => {
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price: {props.basePrice}$</span>
+          <span className={styles.price}>Price: {getPrice(props.basePrice, currentSize.additionalPrice)}$</span>
         </header>
         <form>
           <div className={styles.sizes}>
