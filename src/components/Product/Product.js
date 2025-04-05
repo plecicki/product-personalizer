@@ -15,6 +15,15 @@ const Product = props => {
 
   const getPrice = (basePrice, additionalPrice) => basePrice+additionalPrice;
 
+  const showOrderSummary = () => {
+    console.log('Summary');
+    console.log('=================');
+    console.log('Name:', props.title);
+    console.log('Price:', getPrice(props.basePrice, currentSize.additionalPrice));
+    console.log('Size:', currentSize.name);
+    console.log('Color:', currentColor);
+  }
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -51,7 +60,7 @@ const Product = props => {
               )}
             </ul>
           </div>
-          <Button className={styles.button}>
+          <Button className={styles.button} action={showOrderSummary}>
             <span className="fa fa-shopping-cart" />
           </Button>
         </form>
